@@ -1,13 +1,12 @@
 import { orderResource, type Order, type OrderInput } from '@/contracts/order'
 import { createCrudHandlers } from '../crud-handlers'
 import { db } from '../db'
-import { newId, nowIso } from '../store'
+import { localDateStamp, newId, nowIso } from '../store'
 
 let seq = 0
 function nextOrderNo() {
   seq += 1
-  const date = new Date().toISOString().slice(0, 10).replace(/-/g, '')
-  return `NB-${date}-${String(db.orders.all().length + seq).padStart(4, '0')}`
+  return `NB-${localDateStamp()}-${String(db.orders.all().length + seq).padStart(4, '0')}`
 }
 
 function resolvePaidAt(prev: Order | undefined, status: Order['status']) {

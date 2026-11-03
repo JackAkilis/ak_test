@@ -85,6 +85,7 @@ export function DataTable<T>({
       )}
     >
       <div className="relative overflow-x-auto">
+        {/* 单元格默认不换行：窄屏下表格按内容撑开，由外层 overflow-x-auto 横向滚动 */}
         <table className="w-full text-left text-sm">
           <thead className="border-b border-slate-200 bg-slate-50/80 text-xs tracking-wide text-slate-500 uppercase">
             {table.getHeaderGroups().map((hg) => (
@@ -99,7 +100,7 @@ export function DataTable<T>({
                       key={header.id}
                       scope="col"
                       className={cn(
-                        'px-4 py-3 font-medium',
+                        'px-4 py-3 font-medium whitespace-nowrap',
                         meta.width,
                         meta.align === 'right' && 'text-right',
                       )}
@@ -167,7 +168,7 @@ export function DataTable<T>({
                       <td
                         key={cell.id}
                         className={cn(
-                          'px-4 py-3 text-slate-700',
+                          'px-4 py-3 whitespace-nowrap text-slate-700',
                           meta.align === 'right' && 'text-right tabular-nums',
                         )}
                       >

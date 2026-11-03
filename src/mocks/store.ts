@@ -88,3 +88,11 @@ export function newId(prefix: string) {
 export function nowIso() {
   return new Date().toISOString()
 }
+
+/** 本地时区的 YYYYMMDD（与页面上按本地时间展示的日期保持一致） */
+export function localDateStamp(date: Date = new Date()) {
+  const y = date.getFullYear()
+  const m = String(date.getMonth() + 1).padStart(2, '0')
+  const d = String(date.getDate()).padStart(2, '0')
+  return `${y}${m}${d}`
+}

@@ -1,5 +1,6 @@
 import type { Customer } from '@/contracts/customer'
 import type { Order, OrderStatus } from '@/contracts/order'
+import { localDateStamp } from '../store'
 import { DAY, createRng } from './rng'
 
 const PRODUCTS = [
@@ -37,7 +38,7 @@ export function seedOrders(customers: Customer[], count = 120, seed = 7): Order[
     const seq = String(count - i).padStart(4, '0')
     list.push({
       id: `ord_${String(i + 1).padStart(4, '0')}`,
-      orderNo: `NB-${createdAt.toISOString().slice(0, 10).replace(/-/g, '')}-${seq}`,
+      orderNo: `NB-${localDateStamp(createdAt)}-${seq}`,
       customerId: customer.id,
       customerName: customer.name,
       product: rng.pick(PRODUCTS),
