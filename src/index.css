@@ -1,0 +1,68 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+    font-feature-settings: 'tnum';
+  }
+  ::selection {
+    @apply bg-indigo-100 text-indigo-900;
+  }
+}
+
+/* 滚动条弱化 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: theme(--color-slate-300) transparent;
+}
+
+/* 轻量进入动画（不依赖 tailwindcss-animate） */
+@layer utilities {
+  .anim-slide-in-right {
+    animation: nb-slide-in-right 0.2s ease-out both;
+  }
+  .anim-slide-down {
+    animation: nb-slide-down 0.2s ease-out both;
+  }
+  .anim-fade-in {
+    animation: nb-fade-in 0.15s ease-out both;
+  }
+}
+@keyframes nb-slide-in-right {
+  from {
+    transform: translateX(16px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes nb-slide-down {
+  from {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes nb-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
